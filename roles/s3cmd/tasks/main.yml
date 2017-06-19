@@ -1,0 +1,28 @@
+---
+# install and configure AWS s3 command line tool
+
+- include_vars: secrets.yml
+
+- name: install s3cmd with pip
+  pip:
+    name: s3cmd
+
+- name: configure s3cmd with AWS credentials from ansible-vault
+  template:
+    src: s3cfg.j2
+    dest: /home/{{ weewx_user }}/.s3cfg
+    owner: "{{ weewx_user }}"
+    group: "{{ weewx_user }}"
+    mode: 0600
+
+- name: ensure there is an extensions directory in the weewx home
+  file:
+    path: /home/{{ weewx_user }}/extensions
+    state: directory
+    mode: 0755
+
+- name: clone weewx-S3upload into extensions directory
+  git:
+    repo: ssh://git@github.com:wmadill/weewx-S3upload
+    dest: /home/{{ weewx_user }}/extensions/weewx-S3upload
+    accept_hostkey: yes

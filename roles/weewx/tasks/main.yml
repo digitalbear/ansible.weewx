@@ -1,20 +1,20 @@
 ---
 
-- name: add weewx user
+- name: add {{ weewx_user }} user
   user:
-    name: weewx
+    name: "{{ weewx_user }}"
     shell: /bin/bash
     state: present
 
 - name: download weewx binary
   get_url:
     url: http://weewx.com/downloads/weewx-3.7.1.tar.gz
-    dest: /opt
+    dest: /tmp
     mode: 0777
 
 - name: expand archive
   unarchive:
-    src: /opt/weewx-3.7.1.tar.gz
+    src: /tmp/weewx-3.7.1.tar.gz
     dest: /opt
     remote_src: True
 
@@ -23,9 +23,9 @@
   args:
     chdir: /opt/weewx-3.7.1
 
-# not working yet
-#- name: install weewx binaries
-#  command: ./setup.py install
-#  args:
-#    chdir: /opt/weewx-3.7.1
-
+- name: create/overwrite config file from template
+  template:
+    src: weewx.conf.j2
+    dest: /home/{{ weewx_user }}
+    owner: root
+    mode: 0664
