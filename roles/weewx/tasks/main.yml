@@ -28,8 +28,8 @@
 - name: create/overwrite config file from template
   template:
     src: weewx.conf.j2
-    dest: /home/{{ weewx_user }}
-    owner: root
+    dest: /home/{{ weewx_user }}/weewx.conf
+    owner: "{{ weewx_user }}"
     mode: 0664
 
 - name: ensure there is an archive directory to hold the SQLite database

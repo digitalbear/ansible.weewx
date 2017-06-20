@@ -4,3 +4,7 @@
     name: git
 # sommenting the update-cache step makes things a lot faster
 #    update-cache: yes
+
+- name: install sqlite3
+  apt:
+    name: sqlite3
