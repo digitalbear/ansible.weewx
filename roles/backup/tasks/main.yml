@@ -1,0 +1,21 @@
+---
+
+- name: create backup directory
+  file:
+    path: /home/{{ weewx_user }}/backup
+    state: directory
+    owner: "{{ weewx_user }}"
+    group: "{{ weewx_user }}"
+    mode: 0775
+
+- name: clone weewx_backup into backup directory
+  git:
+    repo: https://github.com/digitalbear/weewx.backup.git
+    dest: /home/{{ weewx_user }}/backup
+
+- name: configure crontab to run backup script every day around 2 am
+  cron:
+    name: "weewx backup"
+    hour: "2"
+    minute: "15"
+    job: /home/{{ weewx_user }}/backup/weewx_backup.sh

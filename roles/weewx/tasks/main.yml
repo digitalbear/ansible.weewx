@@ -36,13 +36,13 @@
   file:
     path: /home/{{ weewx_user }}/archive
     state: directory
-    mode: 0755
+    mode: 0775
 
 - name: ensure there is an extensions directory in the weewx home
   file:
     path: /home/{{ weewx_user }}/extensions
     state: directory
-    mode: 0755
+    mode: 0775
 
 - name: clone weewx-S3upload into extensions directory
   git:
