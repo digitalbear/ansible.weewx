@@ -48,6 +48,7 @@
   git:
     repo: https://github.com/wmadill/weewx-S3upload.git
     dest: /home/{{ weewx_user }}/extensions/weewx-S3upload
+    force: yes
 
 - name: copy s3 skins
   command: cp -rp ./extensions/weewx-S3upload/skins/S3upload ./skins/
