@@ -213,6 +213,12 @@ version = 3.7.1
         # deletion, zero to allow files to accumulate remotely.
         delete = 0
 
+    [[S3upload]]
+        skin = S3upload
+        access_key = {{ access_key }}
+        secret_token = {{ secret_key }}
+        bucket_name = {{ s3_bucket }}
+
 ##############################################################################
 
 #   This service acts as a filter, converting the unit system coming from

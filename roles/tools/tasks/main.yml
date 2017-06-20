@@ -2,4 +2,5 @@
 - name: install git
   apt:
     name: git
-    update-cache: yes
+# sommenting the update-cache step makes things a lot faster
+#    update-cache: yes

@@ -1,2 +1,4 @@
 ---
 weewx_user: weewx
+
+s3_bucket: s3://dubweather
