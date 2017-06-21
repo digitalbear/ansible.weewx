@@ -3,3 +3,4 @@
 - include: packages.yml
 - include: weewx.yml
 - include: s3cmd.yml
+- include: backup.yml

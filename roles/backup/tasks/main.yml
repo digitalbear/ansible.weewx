@@ -18,4 +18,5 @@
     name: "weewx backup"
     hour: "2"
     minute: "15"
-    job: /home/{{ weewx_user }}/backup/weewx_backup.sh
+    user: "{{ weewx_user }}"
+    job: /home/{{ weewx_user }}/backup/weewx_backup.sh > /home/{{ weewx_user }}/backup/weewx_backup.log 2>&1
