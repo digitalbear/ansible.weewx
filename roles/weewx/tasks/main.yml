@@ -82,3 +82,9 @@
   notify:
     restart weewx
 
+- name: modify sudoers file to allow {{ weewx_user }} to stop/start service
+  blockinfile:
+    path: /etc/sudoers
+    block: |
+      %weewx ALL=NOPASSWD: /usr/sbin/service weewx stop
+      %weewx ALL=NOPASSWD: /usr/sbin/service weewx start
